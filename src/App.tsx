@@ -1,6 +1,7 @@
 import { useEffect, useState, type SyntheticEvent } from "react";
 import {
   appendParams,
+  clearParams,
   deleteAppendedParam,
   getEntries,
   getForEach,
@@ -61,7 +62,7 @@ function App() {
           name="search"
           id="search"
           type="text"
-          value={queryParams.q}
+          value={queryParams.q ?? ""}
           onChange={(e) => handleChange(e, "q")}
         />
       </div>
@@ -70,7 +71,7 @@ function App() {
         <select
           name="amount"
           id="amount"
-          value={queryParams.amount}
+          value={queryParams.amount ?? ""}
           onChange={(e) => handleChange(e, "amount")}
         >
           <option value="">Choose an option</option>
@@ -136,6 +137,15 @@ function App() {
         </form>
         <span>Results: {searchResults}</span>
       </div>
+      <button
+        onClick={() => {
+          clearParams();
+          setQueryParams({});
+          setSearchParam("");
+        }}
+      >
+        Clear params
+      </button>
     </div>
   );
 }

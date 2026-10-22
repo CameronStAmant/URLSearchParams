@@ -66,3 +66,5 @@ export const getParam = (paramToGet: string): string => {
   const res = new URLSearchParams(window.location.search);
   return res.get(paramToGet) ?? "Param does not exist";
 };
+
+export const clearParams = () => window.history.replaceState(null, "", "?");
