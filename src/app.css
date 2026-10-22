@@ -6,3 +6,7 @@
 label {
   margin-right: 5px;
 }
+
+button {
+  width: max-content;
+}

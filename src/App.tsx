@@ -56,8 +56,21 @@ function App() {
         The size of the search parameter entries is{" "}
         {getSizeOfSearchParameters(queryParams)}
       </div>
-      <button onClick={() => appendParams(queryParams)}>
-        Click here to append a value;
+      <button
+        onClick={() =>
+          appendParams(
+            queryParams,
+            "isAppended",
+            "true",
+            (key: string, value: string) => {
+              setQueryParams((params) => {
+                return { ...params, ...{ [key]: value } };
+              });
+            },
+          )
+        }
+      >
+        Append value
       </button>
     </div>
   );

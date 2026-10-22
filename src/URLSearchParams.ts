@@ -27,9 +27,14 @@ export const getSizeOfSearchParameters = (existingParams: Partial<Params>) => {
   return params.size;
 };
 
-export const appendParams = (newParams: Partial<Params>) => {
+export const appendParams = (
+  newParams: Partial<Params>,
+  param: string,
+  value: string,
+  handleChange: (key: string, value: string) => void,
+) => {
   const params = new URLSearchParams(newParams);
-
-  params.append("isAppended", "true");
+  params.append(param, value);
   window.history.replaceState(null, "", `?${params}`);
+  handleChange(param, value);
 };
