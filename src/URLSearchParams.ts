@@ -1,0 +1,35 @@
+export type Params = {
+  q: string;
+  amount: string;
+};
+
+export const getURLSearchParams = () => {
+  const params = new URLSearchParams(window.location.search);
+
+  const parsedParams: Partial<Params> = {};
+
+  for (const [key, value] of params) {
+    parsedParams[key as keyof Params] = value;
+  }
+
+  return parsedParams;
+};
+
+export const writeURLSearchParams = (newParams: Partial<Params>) => {
+  const params = new URLSearchParams(newParams).toString();
+  if (!!params) {
+    window.history.replaceState(null, "", `?${params}`);
+  }
+};
+
+export const getSizeOfSearchParameters = (existingParams: Partial<Params>) => {
+  const params = new URLSearchParams(existingParams);
+  return params.size;
+};
+
+export const appendParams = (newParams: Partial<Params>) => {
+  const params = new URLSearchParams(newParams);
+
+  params.append("isAppended", "true");
+  window.history.replaceState(null, "", `?${params}`);
+};

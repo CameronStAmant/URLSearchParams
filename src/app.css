@@ -1,3 +1,8 @@
-label {
+.root {
   display: grid;
+  gap: 30px;
+}
+
+label {
+  margin-right: 5px;
 }
