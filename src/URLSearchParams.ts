@@ -58,3 +58,6 @@ export const getEntries = (newParams: Partial<Params>) => {
   }
   return list;
 };
+
+export const getForEach = (newParams: Partial<Params>) =>
+  new URLSearchParams(newParams);

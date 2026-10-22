@@ -3,6 +3,7 @@ import {
   appendParams,
   deleteAppendedParam,
   getEntries,
+  getForEach,
   getSizeOfSearchParameters,
   getURLSearchParams,
   writeURLSearchParams,
@@ -29,6 +30,20 @@ function App() {
   };
 
   const entries = getEntries(queryParams);
+
+  const displayForEach = () => {
+    let list: React.JSX.Element[] = [];
+
+    getForEach(queryParams).forEach((value, key) => {
+      list.push(
+        <div>
+          Key: {key}, Value: {value}
+        </div>,
+      );
+    });
+
+    return list;
+  };
 
   return (
     <div className="root">
@@ -94,6 +109,10 @@ function App() {
             );
           }
         })}
+      </div>
+      <div>
+        <span>Another list of entries, but using forEach</span>
+        <div>{displayForEach()}</div>
       </div>
     </div>
   );
