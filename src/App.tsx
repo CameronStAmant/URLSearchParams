@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   appendParams,
   deleteAppendedParam,
+  getEntries,
   getSizeOfSearchParameters,
   getURLSearchParams,
   writeURLSearchParams,
@@ -26,6 +27,8 @@ function App() {
       return { ...params, ...{ [key]: e.target.value } };
     });
   };
+
+  const entries = getEntries(queryParams);
 
   return (
     <div className="root">
@@ -80,6 +83,18 @@ function App() {
       >
         Delete appended param
       </button>
+      <div>
+        <span>The current entries are</span>
+        {entries.map((item) => {
+          for (const [key, value] of Object.entries(item)) {
+            return (
+              <div>
+                Key: {key}, Value: {value}
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
   );
 }

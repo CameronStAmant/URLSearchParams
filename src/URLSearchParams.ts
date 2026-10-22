@@ -49,3 +49,12 @@ export const deleteAppendedParam = (
   window.history.replaceState(null, "", `?${params}`);
   handleChange(getURLSearchParams());
 };
+
+export const getEntries = (newParams: Partial<Params>) => {
+  const params = new URLSearchParams(newParams);
+  let list = [];
+  for (const [key, value] of params.entries()) {
+    list.push({ [key]: value });
+  }
+  return list;
+};
