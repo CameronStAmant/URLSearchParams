@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   appendParams,
+  deleteAppendedParam,
   getSizeOfSearchParameters,
   getURLSearchParams,
   writeURLSearchParams,
@@ -71,6 +72,13 @@ function App() {
         }
       >
         Append value
+      </button>
+      <button
+        onClick={() => {
+          deleteAppendedParam(queryParams, "isAppended", setQueryParams);
+        }}
+      >
+        Delete appended param
       </button>
     </div>
   );

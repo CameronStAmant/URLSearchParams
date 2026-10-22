@@ -38,3 +38,14 @@ export const appendParams = (
   window.history.replaceState(null, "", `?${params}`);
   handleChange(param, value);
 };
+
+export const deleteAppendedParam = (
+  newParams: Partial<Params>,
+  paramToDelete: string,
+  handleChange: React.Dispatch<React.SetStateAction<Partial<Params>>>,
+) => {
+  const params = new URLSearchParams(newParams);
+  params.delete(paramToDelete);
+  window.history.replaceState(null, "", `?${params}`);
+  handleChange(getURLSearchParams());
+};
