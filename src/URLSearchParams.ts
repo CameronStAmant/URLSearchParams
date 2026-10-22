@@ -61,3 +61,8 @@ export const getEntries = (newParams: Partial<Params>) => {
 
 export const getForEach = (newParams: Partial<Params>) =>
   new URLSearchParams(newParams);
+
+export const getParam = (paramToGet: string): string => {
+  const res = new URLSearchParams(window.location.search);
+  return res.get(paramToGet) ?? "Param does not exist";
+};

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
 import {
   appendParams,
   deleteAppendedParam,
   getEntries,
   getForEach,
+  getParam,
   getSizeOfSearchParameters,
   getURLSearchParams,
   writeURLSearchParams,
@@ -13,6 +14,8 @@ import "./app.css";
 
 function App() {
   const [queryParams, setQueryParams] = useState(() => getURLSearchParams());
+  const [searchResults, setSearchResults] = useState<string>("");
+  const [searchParam, setSearchParam] = useState<string>("");
 
   useEffect(() => {
     writeURLSearchParams(queryParams);
@@ -43,6 +46,11 @@ function App() {
     });
 
     return list;
+  };
+
+  const handleSearch = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setSearchResults(getParam(searchParam));
   };
 
   return (
@@ -113,6 +121,20 @@ function App() {
       <div>
         <span>Another list of entries, but using forEach</span>
         <div>{displayForEach()}</div>
+      </div>
+      <div>
+        <form onSubmit={handleSearch}>
+          <label htmlFor="search">Search for param</label>
+          <input
+            name="search"
+            id="search"
+            type="type"
+            value={searchParam}
+            onChange={(e) => setSearchParam(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
+        <span>Results: {searchResults}</span>
       </div>
     </div>
   );
