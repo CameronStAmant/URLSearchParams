@@ -1,6 +1,7 @@
 export type Params = {
   q: string;
   amount: string;
+  isAppended: string;
 };
 
 export const getURLSearchParams = () => {
@@ -16,7 +17,11 @@ export const getURLSearchParams = () => {
 };
 
 export const writeURLSearchParams = (newParams: Partial<Params>) => {
-  const params = new URLSearchParams(newParams).toString();
+  const params = new URLSearchParams();
+  newParams.q && params.set("q", newParams.q);
+  newParams.amount && params.set("amount", newParams.amount);
+  newParams.isAppended && params.set("isAppended", newParams.isAppended);
+
   if (!!params) {
     window.history.replaceState(null, "", `?${params}`);
   }
